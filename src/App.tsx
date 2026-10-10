@@ -15,6 +15,10 @@ export default function App() {
   return (
     <>
       <p>
+        <code>@solidjs/signals</code> 2.0.0-rc.14: <strong>{__SIGNALS_VARIANT__}</strong> (switch with{" "}
+        <code>pnpm signals:stock</code> / <code>pnpm signals:patched</code>)
+      </p>
+      <p>
         <label>
           <input
             type="checkbox"

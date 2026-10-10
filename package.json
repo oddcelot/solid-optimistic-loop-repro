@@ -12,7 +12,11 @@
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "repro": "node --conditions=development src/node.ts same; node --conditions=development src/node.ts split",
-    "repro:prod": "node src/node.ts same; node src/node.ts split"
+    "repro:prod": "node src/node.ts same; node src/node.ts split",
+    "signals:stock": "node scripts/signals.ts stock",
+    "signals:patched": "node scripts/signals.ts patched",
+    "signals:status": "node scripts/signals.ts status",
+    "compare": "node scripts/signals.ts compare"
   },
   "dependencies": {
     "@solidjs/signals": "2.0.0-rc.14",

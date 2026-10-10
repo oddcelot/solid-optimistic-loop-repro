@@ -1,0 +1,36 @@
+diff --git a/dist/dev.js b/dist/dev.js
+index f9df5c88804295c7e3d56c8ac31a728be95c50a8..ef9a76384d8745e218c79fb117924c76df5ccd47 100644
+--- a/dist/dev.js
++++ b/dist/dev.js
+@@ -886,6 +886,7 @@ GlobalQueue._laneSeams = leaks => {
+             : !blocked(l._parent)))
+       )
+         continue;
++      if (l != null && l._lane) r._flags |= REACTIVE_LANE_DIRTY;
+       enqueueSub(r);
+       if (l != null && l._lane && leaked.indexOf(l) === -1) leaked.push(l);
+     }
+diff --git a/dist/observe/core/lanes.js b/dist/observe/core/lanes.js
+index 9082ac429c4c83d473073d953d3edfa87c157e57..38b8f1b1ebaaa967377a10b870ef4004526737c7 100644
+--- a/dist/observe/core/lanes.js
++++ b/dist/observe/core/lanes.js
+@@ -701,6 +701,7 @@ GlobalQueue._n = e => {
+         // if the frame stays parked: a transaction landing at this seam makes
+         // what it read the screen (one run).
+                 if (s.R & REACTIVE_DISPOSED || l != null && l._parent?.rt === l && (s.u & CONFIG_VERDICT ? !(s.R & REACTIVE_PROBE_UNANSWERED) : !blocked(l._parent))) continue;
++        if (l != null && l.Z) s.R |= REACTIVE_LANE_DIRTY;
+         enqueueSub(s);
+         if (l != null && l.Z && n.indexOf(l) === -1) n.push(l);
+     }
+diff --git a/dist/prod/core/lanes.js b/dist/prod/core/lanes.js
+index fba69ee19776aa7623d8bbad467cd1f33509a0e1..1d43a1fb3aef6731c6a3549b87945ad6d9768fc6 100644
+--- a/dist/prod/core/lanes.js
++++ b/dist/prod/core/lanes.js
+@@ -673,6 +673,7 @@ GlobalQueue.Nn = e => {
+         // if the frame stays parked: a transaction landing at this seam makes
+         // what it read the screen (one run).
+                 if (l.R & REACTIVE_DISPOSED || t != null && t._parent?.ye === t && (l.u & CONFIG_VERDICT ? !(l.R & REACTIVE_PROBE_UNANSWERED) : !blocked(t._parent))) continue;
++        if (t != null && t.Z) l.R |= REACTIVE_LANE_DIRTY;
+         enqueueSub(l);
+         if (t != null && t.Z && n.indexOf(t) === -1) n.push(t);
+     }
