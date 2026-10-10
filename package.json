@@ -1,0 +1,16 @@
+{
+  "name": "solid-optimistic-loop-repro",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "repro": "node --conditions=development src/node.ts same; node --conditions=development src/node.ts split",
+    "repro:prod": "node src/node.ts same; node src/node.ts split"
+  },
+  "dependencies": {
+    "@solidjs/signals": "2.0.0-rc.14"
+  },
+  "devDependencies": {
+    "vite": "^8.3.4"
+  }
+}
